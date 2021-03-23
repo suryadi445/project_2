@@ -11,10 +11,10 @@
                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Hits Movie</a>
+                    <a class="nav-link" href="#hits_movie">Hits Movie</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">New Movie</a>
+                    <a class="nav-link" href="#new_movie">New Movie</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Contact</a>
@@ -22,8 +22,8 @@
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <div class="custom-control custom-switch mr-2">
-                    <input type="checkbox" class="custom-control-input" id="customSwitch1">
-                    <label class="custom-control-label text-light" for="customSwitch1">Dark Mode</label>
+                    <input type="checkbox" class="custom-control-input" id="dark_mode">
+                    <label class="custom-control-label text-light" for="dark_mode">Dark Mode</label>
                 </div>
                 <a class="nav-link btn btn-primary mr-3" href="#">Login</a>
                 <div class="input-group">
@@ -63,42 +63,98 @@
     </a>
 </div>
 
-<div class="container">
-    <div class="row">
+<div class="bg-light">
+    <div class="row mr-1 ml-1">
         <div class="col">
+            <h2 class="text-center mt-4 mb-3" id="hits_movie">Hits Movie</h2>
             <div class="card-deck">
-                <div class="card">
+                <div class="card  mb-5">
                     <img src="<?= base_url() ?>assets/image/komputer.jpeg">
                     <div class="card-body">
                         <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <p class="card-text">
+                        <a href="" class="btn btn-success float-right">Episode</a>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card  mb-5">
                     <img src="<?= base_url() ?>assets/image/komputer.jpeg">
                     <div class="card-body">
                         <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                        <p class="card-text">
+                        <a href="" class="btn btn-success float-right">Episode</a>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card mb-5">
                     <img src="<?= base_url() ?>assets/image/komputer.jpeg">
                     <div class="card-body">
                         <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                        <p class="card-text">
+                        <a href="" class="btn btn-success float-right">Episode</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
+<div class="row mt-4 m-2">
+    <div class="col">
+        <h2 class="text-center mb-3" id="new_movie">New Movie</h2>
+        <div class="card-deck">
+            <div class="card">
+                <img src="<?= base_url() ?>assets/image/komputer.jpeg" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="<?= base_url() ?>assets/image/komputer.jpeg" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="<?= base_url() ?>assets/image/komputer.jpeg" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="<?= base_url() ?>assets/image/komputer.jpeg" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="<?= base_url() ?>assets/image/komputer.jpeg" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="<?= base_url() ?>assets/image/komputer.jpeg" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bg-light mt-4 container-fluid">
     <div class="row">
-        <div class="col">
-            <div class="row justify-content-center mt-4">
-                <div class="col-5 card bg-light mr-5">
+        <div class="col mb-5 ml-3 mr-3">
+            <div class="row mt-4 justify-content-between">
+                <div class="col-5 card bg-light">
                     <form>
                         <div class="form-group">
                             <label for="nama">Nama</label>
@@ -121,7 +177,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-5 card bg-light ml-5">
+                <div class="col-6 card bg-light">
                     <div class="form-group">
                         <label for="message">Komentar</label>
                         <textarea class="form-control" id="message" rows="10"></textarea>
