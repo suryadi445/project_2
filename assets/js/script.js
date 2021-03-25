@@ -1,6 +1,6 @@
 $(document).ready(function(){
     // carousel
-    $('.carousel').carousel({
+    $('.carousel_API').carousel({
         interval: 2000
     })
 })

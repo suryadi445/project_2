@@ -25,7 +25,7 @@
                     <input type="checkbox" class="custom-control-input" id="dark_mode">
                     <label class="custom-control-label text-light" for="dark_mode">Dark Mode</label>
                 </div>
-                <a class="nav-link btn btn-primary mr-3" href="#">Login</a>
+                <a class="nav-link btn btn-primary mr-3" href="<?= base_url() ?>auth/login">Login</a>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <button class="btn btn-light">
@@ -37,45 +37,50 @@
             </form>
         </div>
     </nav>
-    <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="<?= base_url() ?>assets/image/komputer.jpeg" class="d-block w-100">
+    <!-- carrousel -->
+    <div id="carouselExampleIndicators" class="carousel slide carousel_API" data-ride="carousel">
+        <!-- <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol> -->
+        <div class="carousel-inner">
+            <?php $counter = 1; ?>
+            <?php foreach ($result as $slider) : ?>
+                <div class="carousel-item 
+                <?php if ($counter <= 1) {
+                    echo ' active ';
+                } ?>">
+                    <img src="<?= $slider['img'] ?>" class="d-block w-100">
+                </div>
+                <?php $counter++ ?>
+            <?php endforeach ?>
         </div>
-        <div class="carousel-item">
-            <img src="<?= base_url() ?>assets/image/komputer.jpeg" class="d-block w-100">
-        </div>
-        <div class="carousel-item">
-            <img src="<?= base_url() ?>assets/image/komputer.jpeg" class="d-block w-100">
-        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
 </div>
 
 <div class="bg-light">
     <div class="row mr-1 ml-1">
         <div class="col">
-            <h2 class="text-center mt-4 mb-3" id="hits_movie">Hits Movie</h2>
+            <h2 class="text-center mt-4 mb-3" id="hits_movie">Now Playing</h2>
             <div class="card-deck">
-                <div class="card  mb-5">
-                    <img src="<?= base_url() ?>assets/image/komputer.jpeg">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <a href="" class="btn btn-success float-right">Episode</a>
+                <?php foreach ($result as $hasil) : ?>
+                    <div class="card mb-5">
+                        <img src="<?= $hasil['img'] ?>">
+                        <div class="card-body">
+                            <h5 class="card-title"><?= $hasil['title'] ?></h5>
+                        </div>
                     </div>
-                </div>
-                <div class="card  mb-5">
+                <?php endforeach ?>
+                <!-- <div class="card  mb-5">
                     <img src="<?= base_url() ?>assets/image/komputer.jpeg">
                     <div class="card-body">
                         <h5 class="card-title">Card title</h5>
@@ -88,7 +93,7 @@
                         <h5 class="card-title">Card title</h5>
                         <a href="" class="btn btn-success float-right">Episode</a>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
