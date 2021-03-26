@@ -3,4 +3,5 @@ $(document).ready(function(){
     $('.carousel_API').carousel({
         interval: 2000
     })
+
 })

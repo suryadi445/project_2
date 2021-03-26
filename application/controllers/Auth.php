@@ -5,6 +5,14 @@ class Auth extends CI_Controller
 {
     public function login()
     {
-        echo 'anda sudah loguin';
+        $this->load->view('templates/header');
+        $this->load->view('auth/login');
+        $this->load->view('templates/footer');
+    }
+
+
+    public function registrasi()
+    {
+        
     }
 }
