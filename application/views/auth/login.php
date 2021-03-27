@@ -6,6 +6,8 @@
                 <h3 class="text-center">Login</h3>
             </div>
         </div>
+        <?= $this->session->flashdata('error') ?>
+        <?= $this->session->flashdata('sukses') ?>
         <div class="row mb-3">
             <div class="col">
                 <form>
@@ -40,31 +42,32 @@
         <div class="modal-content">
             <div class="mt-3 mb-2">
                 <h5 class="text-center" id="exampleModalLabel">Registrasi</h5>
-                <hr>
             </div>
-            <div class="modal-body">
-                <form class="mt-n4">
+            <div class="container">
+                <form action="<?= base_url() ?>auth/registrasi" method="post" class="mb-3">
                     <div class="form-group">
                         <label for="nama_modal">Nama</label>
-                        <input type="text" class="form-control" id="nama_modal" placeholder="Masukkan nama lengkap anda">
+                        <input type="text" name="nama" class="form-control" id="nama_modal" placeholder="Masukkan nama lengkap anda" value="<?= set_value('nama') ?>">
                     </div>
                     <div class="form-group">
                         <label for="email_modal">Email</label>
-                        <input type="email" class="form-control" id="email_modal" placeholder="Masukkan email lengkap anda">
+                        <input type="email" name="email" class="form-control" id="email_modal" placeholder="Masukkan email lengkap anda" value="<?= set_value('email') ?>">
                     </div>
                     <div class="form-group">
                         <label for="password_modal">Password</label>
-                        <input type="password" class="form-control" id="password_modal" placeholder="*******">
+                        <input type="password" name="password" class="form-control" id="password_modal" placeholder="*******" value="<?= set_value('password') ?>">
                     </div>
                     <div class="form-group">
                         <label for="password_modal2">Ulangi Password</label>
-                        <input type="password" class="form-control" id="password_modal2" placeholder="*******">
+                        <input type="password" name="password2" class="form-control" id="password_modal2" placeholder="*******" value="<?= set_value('password2') ?>">
+                    </div>
+                    <div class="row float-right mb-3">
+                        <div class="col">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-primary">Daftar</button>
+                        </div>
                     </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-primary">Daftar</button>
             </div>
         </div>
     </div>
