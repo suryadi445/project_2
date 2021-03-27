@@ -1,7 +1,9 @@
-$(document).ready(function(){
-    // carousel
-    $('.carousel_API').carousel({
-        interval: 2000
+$('document').ready(function() {
+    $('#checkbox').click(function(){
+        if($(this).is(':checked')){
+            $('#password_login').attr('type', 'text')
+        }else{
+            $('#password_login').attr('type', 'password')
+        }
     })
-
 })

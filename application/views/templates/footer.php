@@ -1,8 +1,8 @@
-    <script src="<?= base_url() ?>assets/js/jquery-3.6.0.js"></script>
+<!-- bootstrap js -->
+<script src="<?= base_url() ?>assets/bootstrap/js/bootstrap.min.js"></script>
+<!-- my js -->
+<script src="<?= base_url() ?>assets/js/script.js"></script>
 
-    <script src="<?= base_url() ?>assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="<?= base_url() ?>assets/js/script.js"></script>
+</body>
 
-    </body>
-
-    </html>
+</html>

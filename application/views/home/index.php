@@ -75,20 +75,6 @@
                         </div>
                     </div>
                 <?php endforeach ?>
-                <!-- <div class="card  mb-5">
-                    <img src="<?= base_url() ?>assets/image/komputer.jpeg">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <a href="" class="btn btn-success float-right">Episode</a>
-                    </div>
-                </div>
-                <div class="card mb-5">
-                    <img src="<?= base_url() ?>assets/image/komputer.jpeg">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <a href="" class="btn btn-success float-right">Episode</a>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>
@@ -192,7 +178,6 @@
     <div class="container">
         <div class="row">
             <div class="col text-center">
-                <!-- <p>Copyright &copy;<?= date('Y') ?>.</p> -->
                 <p>Copyright <i class="far fa-copyright"></i><?= date(' Y') ?></p>
             </div>
         </div>
