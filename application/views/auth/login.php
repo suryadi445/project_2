@@ -7,9 +7,9 @@
                 <hr style="width: 40px;" class="mt-1 bg-dark">
             </div>
         </div>
-        <?= $this->session->flashdata('error') ?>
-        <?= $this->session->flashdata('sukses') ?>
-        <?= $this->session->flashdata('validasi') ?>
+        <div class="flash_error" data-flash="<?= $this->session->flashdata('error') ?>"></div>
+        <div class="flash_sukses" data-flash="<?= $this->session->flashdata('sukses') ?>"></div>
+        <!-- <div class="flash_error" data-flash="<?= $this->session->flashdata('validasi') ?>"></div> -->
         <div class="row mb-3">
             <div class="col">
                 <form action="<?= base_url() ?>Auth/login" method="POST">

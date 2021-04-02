@@ -35,14 +35,20 @@ class Auth extends CI_Controller
 
         if ($user) {
             if (password_verify($password, $user['password'])) {
-                $this->session->set_flashdata('sukses', '<div class="alert alert-danger" role="alert">selamat datang ' . $user['nama'] . '</div>');
+                $data = [
+                    'email' => $user['email'],
+                    'nama' => $user['nama']
+                ];
+
+                $this->session->set_userdata($data);
+                $this->session->set_flashdata('sukses', 'selamat datang ' . $user['nama']);
                 redirect('home/index');
             } else {
-                $this->session->set_flashdata('error', '<div class="alert alert-danger" role="alert">Password yang anda masukkan salah</div>');
+                $this->session->set_flashdata('error', 'Password yang anda masukkan salah');
                 redirect('auth/login');
             }
         } else {
-            $this->session->set_flashdata('error', '<div class="alert alert-danger" role="alert">Anda belum terdaftar, mohon registrasi terlebih dahulu..</div>');
+            $this->session->set_flashdata('error', 'Anda belum terdaftar, mohon registrasi terlebih dahulu..');
             redirect('auth/login');
         }
     }
@@ -70,14 +76,21 @@ class Auth extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             // gagal
-            $this->session->set_flashdata('error', '<div class="alert alert-danger" role="alert">data gagal ditambahkan</div>');
-            $this->session->set_flashdata('validasi', '<div class="alert alert-danger" role="alert">' . validation_errors() . '</div>');
+            $this->session->set_flashdata('error', 'data gagal ditambahkan');
+            $this->session->set_flashdata('validasi', '' . validation_errors() . '');
             redirect('auth/login');
         } else {
             // berhasil
             $this->auth_model->insert($data);
-            $this->session->set_flashdata('sukses', '<div class="alert alert-danger" role="alert">data berhasil ditambahkan</div>');
+            $this->session->set_flashdata('sukses', 'data berhasil ditambahkan');
             redirect('auth/login');
         }
+    }
+
+
+    public function logout()
+    {
+        session_destroy();
+        redirect('home/index');
     }
 }

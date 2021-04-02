@@ -20,13 +20,20 @@
                     <a class="nav-link" href="#">Contact</a>
                 </li>
             </ul>
-            <?= $this->session->flashdata('sukses') ?>
+            <div class="flash_sukses" data-flash="<?= $this->session->flashdata('sukses') ?>"></div>
             <form class="form-inline my-2 my-lg-0">
+                <div class="text-light mt-3 mr-2">
+                    <p><?= $this->session->userdata('nama') ?></p>
+                </div>
                 <div class="custom-control custom-switch mr-2">
                     <input type="checkbox" class="custom-control-input" id="dark_mode">
                     <label class="custom-control-label text-light" for="dark_mode">Dark Mode</label>
                 </div>
-                <a class="nav-link btn btn-primary mr-3" href="<?= base_url() ?>auth/login">Login</a>
+                <?php if ($this->session->userdata('nama')) { ?>
+                    <a class="nav-link btn btn-primary mr-3" href="<?= base_url() ?>auth/login">Logout</a>
+                <?php } else { ?>
+                    <a class="nav-link btn btn-primary mr-3" href="<?= base_url() ?>auth/logout">Login</a>
+                <?php } ?>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <button class="btn btn-light">
