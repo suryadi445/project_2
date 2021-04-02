@@ -20,6 +20,7 @@
                     <a class="nav-link" href="#">Contact</a>
                 </li>
             </ul>
+            <?= $this->session->flashdata('sukses') ?>
             <form class="form-inline my-2 my-lg-0">
                 <div class="custom-control custom-switch mr-2">
                     <input type="checkbox" class="custom-control-input" id="dark_mode">

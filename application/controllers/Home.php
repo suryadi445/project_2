@@ -27,8 +27,9 @@ class Home extends CI_Controller
         $result = json_decode($result, true);
 
         $data['result'] = $result['result']['hasil'];
+        $data['judul'] = 'Home';
 
-        $this->load->view('templates/header');
+        $this->load->view('templates/header', $data);
         $this->load->view('home/index', $data);
         $this->load->view('templates/footer');
     }

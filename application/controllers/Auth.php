@@ -13,18 +13,50 @@ class Auth extends CI_Controller
 
     public function login()
     {
-        $this->load->view('templates/header');
-        $this->load->view('auth/login');
-        $this->load->view('templates/footer');
+        $this->form_validation->set_rules('email_login', 'Email', 'required');
+        $this->form_validation->set_rules('password_login', 'Password', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $data['judul'] = 'Form Login';
+            $this->load->view('templates/header', $data);
+            $this->load->view('auth/login');
+            $this->load->view('templates/footer');
+        } else {
+            $this->_login();
+        }
+    }
+
+    private function _login()
+    {
+        $email = $this->input->post('email_login');
+        $password = $this->input->post('password_login');
+
+        $user = $this->db->get_where('tbl_users', ['email' => $email])->row_array();
+
+        if ($user) {
+            if (password_verify($password, $user['password'])) {
+                $this->session->set_flashdata('sukses', '<div class="alert alert-danger" role="alert">selamat datang ' . $user['nama'] . '</div>');
+                redirect('home/index');
+            } else {
+                $this->session->set_flashdata('error', '<div class="alert alert-danger" role="alert">Password yang anda masukkan salah</div>');
+                redirect('auth/login');
+            }
+        } else {
+            $this->session->set_flashdata('error', '<div class="alert alert-danger" role="alert">Anda belum terdaftar, mohon registrasi terlebih dahulu..</div>');
+            redirect('auth/login');
+        }
     }
 
 
     public function registrasi()
     {
-        $this->form_validation->set_rules('nama', 'Nama', 'required');
-        $this->form_validation->set_rules('email', 'Email', 'required');
-        $this->form_validation->set_rules('password', 'Password', 'required');
-        $this->form_validation->set_rules('password2', 'Password2', 'required');
+        $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[tbl_users.email]');
+        $this->form_validation->set_rules('password', 'Konfirmasi Password', 'required|trim|min_length[4]|matches[password2]', [
+            'min_length' => 'Password minimal 4 karakter',
+            'matches' => 'Konfirmasi password tidak sama'
+        ]);
+        $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password]');
 
         $nama = htmlspecialchars($this->input->post('nama', true));
         $email = htmlspecialchars($this->input->post('email', true));
@@ -39,6 +71,7 @@ class Auth extends CI_Controller
         if ($this->form_validation->run() == false) {
             // gagal
             $this->session->set_flashdata('error', '<div class="alert alert-danger" role="alert">data gagal ditambahkan</div>');
+            $this->session->set_flashdata('validasi', '<div class="alert alert-danger" role="alert">' . validation_errors() . '</div>');
             redirect('auth/login');
         } else {
             // berhasil

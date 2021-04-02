@@ -2,3 +2,9 @@
 .carousel-item {
 	height: 570px;
 }
+
+body {
+	background-image: url('https://21cineplex.com//theme/v5/assets/img/detail-cinema-1.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}

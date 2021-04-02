@@ -16,7 +16,7 @@
     <!-- my css -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/style.css">
 
-    <title>Hello, world!</title>
+    <title><?= $judul ?></title>
 </head>
 
 <body>
