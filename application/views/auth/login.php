@@ -1,7 +1,7 @@
 <body class="background-login">
     <!-- awal form login -->
     <div class="container mt-3 margin">
-        <div class="card m-auto col-md-6" style="width: 100%;">
+        <div class="card m-auto col-md-6">
             <div class="row mb-3 mt-3">
                 <div class="col">
                     <h3 class="text-center">Login</h3>
