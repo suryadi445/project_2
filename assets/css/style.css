@@ -3,8 +3,13 @@
 	height: 570px;
 }
 
-body {
+.background-login {
 	background-image: url('https://21cineplex.com//theme/v5/assets/img/detail-cinema-1.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
+}
+
+.margin {
+	padding-top: 5%;
+	padding-bottom: 5%;
 }

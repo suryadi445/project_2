@@ -1,3 +1,7 @@
+<!-- jquery -->
+<script src="<?= base_url() ?>assets/js/jquery-3.6.0.js"></script>
+
+
 <!-- bootstrap js -->
 <script src="<?= base_url() ?>assets/bootstrap/js/bootstrap.min.js"></script>
 <!-- sweetAlert -->
@@ -6,6 +10,7 @@
 
 <!-- my js -->
 <script src="<?= base_url() ?>assets/js/script.js"></script>
+
 <script>
     let flash = $('.flash_sukses').data('flash');
 
