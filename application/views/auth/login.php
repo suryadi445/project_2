@@ -38,15 +38,16 @@
                 </div>
                 <div class="row mx-sm-n5">
                     <div class="col px-sm-5">
-                        <button class="p-2 ml-3 border btn btn-primary float-left rounded-pill w-100">
+                        <a href="#" class="p-2 ml-3 border btn btn-primary float-left rounded-pill w-100">
                             <i class="fab fa-facebook-f"></i>
-                            Facebook</button>
+                            Facebook
+                        </a>
                     </div>
                     <div class="col px-sm-5">
-                        <button class="p-2 mr-3 border btn btn-danger float-right rounded-pill w-100">
+                        <a href="#" class="p-2 mr-3 border btn btn-danger float-right rounded-pill w-100">
                             <i class="fab fa-google"></i>
                             Google
-                        </button>
+                        </a>
                     </div>
                 </div>
                 <div class="row mt-3 mb-4 text-center">
