@@ -13,8 +13,8 @@ class Auth extends CI_Controller
 
     public function login()
     {
-        $this->form_validation->set_rules('email_login', 'Email', 'required');
-        $this->form_validation->set_rules('password_login', 'Password', 'required');
+        $this->form_validation->set_rules('email_login', 'Email', 'required|trim|valid_email');
+        $this->form_validation->set_rules('password_login', 'Password', 'required|trim');
 
         if ($this->form_validation->run() == false) {
             $data['judul'] = 'Form Login';
@@ -76,8 +76,8 @@ class Auth extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             // gagal
-            $this->session->set_flashdata('error', 'data gagal ditambahkan');
-            $this->session->set_flashdata('validasi', '' . validation_errors() . '');
+            $this->session->set_flashdata('error', 'Registrasi gagal. Masukkan data dengan benar!!');
+            $this->session->set_flashdata('validasi', '<div class="alert alert-danger" role="alert">' . validation_errors() . '</div>');
             redirect('auth/login');
         } else {
             // berhasil

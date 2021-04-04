@@ -10,7 +10,7 @@
             </div>
             <div class="flash_error" data-flash="<?= $this->session->flashdata('error') ?>"></div>
             <div class="flash_sukses" data-flash="<?= $this->session->flashdata('sukses') ?>"></div>
-            <!-- <div class="flash_error" data-flash="<?= $this->session->flashdata('validasi') ?>"></div> -->
+            <?= $this->session->flashdata('validasi'); ?>
             <div class="container">
                 <div class="row mb-3">
                     <div class="col">
@@ -18,10 +18,12 @@
                             <div class="form-group">
                                 <label for="email_login">Email</label>
                                 <input type="email" class="form-control" name="email_login" id="email_login" aria-describedby="emailHelp" placeholder="Masukkan email anda">
+                                <?= form_error('email_login', '<small class="text-danger">', '</small>'); ?>
                             </div>
                             <div class="form-group">
                                 <label for="password_login">Password</label>
                                 <input type="password" class="form-control" name="password_login" id="password_login" placeholder="*******">
+                                <?= form_error('password_login', '<small class="text-danger">', '</small><br>'); ?>
                                 <input type="checkbox" class="form-checkbox mt-2" id="checkbox">
                                 Show Password
                             </div>
