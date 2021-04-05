@@ -1,65 +1,91 @@
-<body class="background-login">
+<body class="hold-transition login-page background-login">
     <!-- awal form login -->
-    <div class="container mt-3 margin">
-        <div class="card m-auto col-md-6">
-            <div class="row mb-3 mt-3">
-                <div class="col">
-                    <h3 class="text-center">Login</h3>
-                    <hr style="width: 40px;" class="mt-1 bg-dark">
-                </div>
-            </div>
-            <div class="flash_error" data-flash="<?= $this->session->flashdata('error') ?>"></div>
+    <div class="container ">
+        <div class="login-box m-auto" style="width: 430px;">
+            <!-- alert -->
+            <div class="toastrDefaultError" data-flash_toast="<?= $this->session->flashdata('error') ?>"></div>
+            <div class="swalDefaultError" data-flash_validasi="<?= $this->session->flashdata('validasi') ?>"></div>
             <div class="flash_sukses" data-flash="<?= $this->session->flashdata('sukses') ?>"></div>
-            <?= $this->session->flashdata('validasi'); ?>
-            <div class="container">
-                <div class="row mb-3">
-                    <div class="col">
-                        <form action="<?= base_url() ?>Auth/login" method="POST">
-                            <div class="form-group">
-                                <label for="email_login">Email</label>
-                                <input type="email" class="form-control" name="email_login" id="email_login" aria-describedby="emailHelp" placeholder="Masukkan email anda">
-                                <?= form_error('email_login', '<small class="text-danger">', '</small>'); ?>
+
+            <!-- /.login-logo -->
+            <div class="card card-outline card-light">
+                <div class="card-header text-center">
+                    <p class="h1"><b>Registrasi</b></p>
+                </div>
+                <div class="card-body">
+                    <p class="login-box-msg">Masuk untuk memulai session Anda</p>
+                    <form action="<?= base_url() ?>Auth/login" method="POST">
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" name="email_login" id="email_login" placeholder="Masukkan Email Anda">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-envelope"></span>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="password_login">Password</label>
-                                <input type="password" class="form-control" name="password_login" id="password_login" placeholder="*******">
-                                <?= form_error('password_login', '<small class="text-danger">', '</small><br>'); ?>
-                                <input type="checkbox" class="form-checkbox mt-2" id="checkbox">
+                        </div>
+                        <?= form_error('email_login', '<div class="text-danger mt-n3">', '</div>'); ?>
+                        <div class="input-group">
+                            <input type="password" class="form-control" name="password_login" id="password_login" placeholder="Masukkan Password Anda">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <?= form_error('password_login', '<div class="text-danger ">', '</div>'); ?>
+                        <div class="d-flex justify-content-between">
+                            <p class="text-left">
+                                <input type="checkbox" class="form-checkbox mt-1" id="checkbox">
                                 Show Password
+                            </p>
+                            <p class="text-right">
+                                <a href="forgot-password.html" class="text-success">Lupa Password?</a>
+                            </p>
+                        </div>
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="icheck-primary">
+                                    <input type="checkbox" id="remember">
+                                    <label for="remember">
+                                        Remember Me
+                                    </label>
+                                </div>
                             </div>
-                            <button class="btn btn-success mb-n3 w-100">Masuk</button>
-                        </form>
-                    </div>
-                </div>
-                <div class="row text-secondary d-inline">
-                    <div class="col text-center">
-                        atau masuk dengan
-                    </div>
-                </div>
-                <div class="row mx-sm-n5">
-                    <div class="col px-sm-5">
-                        <a href="#" class="p-2 ml-3 border btn btn-primary float-left rounded-pill w-100">
-                            <i class="fab fa-facebook-f"></i>
-                            Facebook
+                            <!-- /.col -->
+                            <div class="col-4">
+                                <button type="submit" class="btn btn-success btn-block">Masuk</button>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                    </form>
+                    <section class="d-flex mt-3">
+                        <hr style="width: 100px;" class="">
+                        <p class="mt-1">atau masuk dengan</p>
+                        <hr style="width: 100px;">
+                    </section>
+                    <div class="social-auth-links text-center mt-2 mb-3">
+                        <a href="#" class="btn btn-block btn-primary">
+                            <i class="fab fa-facebook-f mr-2"></i> Facebook
+                        </a>
+                        <a href="#" class="btn btn-block btn-danger">
+                            <i class="fab fa-google mr-2"></i> Google
                         </a>
                     </div>
-                    <div class="col px-sm-5">
-                        <a href="#" class="p-2 mr-3 border btn btn-danger float-right rounded-pill w-100">
-                            <i class="fab fa-google"></i>
-                            Google
-                        </a>
+                    <!-- /.social-auth-links -->
+                    <div class="row mt-3 text-center">
+                        <div class="col">
+                            belum memiliki akun?
+                            <a href="" class="text-decoration-none text-success" data-toggle="modal" data-target="#exampleModal">
+                                Daftar
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="row mt-3 mb-4 text-center">
-                    <div class="col">
-                        belum memiliki akun?
-                        <a href="" class="text-decoration-none text-success" data-toggle="modal" data-target="#exampleModal">
-                            Daftar
-                        </a>
-                    </div>
-                </div>
+                <!-- /.card-body -->
             </div>
+            <!-- /.card -->
         </div>
+        <!-- /.login-box -->
     </div>
     <!-- akhir form login -->
 
@@ -70,7 +96,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content bg-white text-dark">
                 <div class="mt-4">
-                    <h4 class="text-center" id="daftar_modal">Daftar Sekarang</h4>
+                    <h4 class="text-center" id="daftar_modal"><b>Daftar Sekarang</b></h4>
                     <hr class="mb-n4">
                 </div>
                 <div class="container p-5">

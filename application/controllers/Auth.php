@@ -81,7 +81,7 @@ class Auth extends CI_Controller
         if ($this->form_validation->run() == false) {
             // gagal
             $this->session->set_flashdata('error', 'Registrasi gagal. Masukkan data dengan benar!!');
-            $this->session->set_flashdata('validasi', '<div class="alert alert-danger" role="alert">' . validation_errors() . '</div>');
+            $this->session->set_flashdata('validasi', validation_errors());
             redirect('auth/login');
         } else {
             // berhasil
@@ -94,6 +94,7 @@ class Auth extends CI_Controller
 
     public function logout()
     {
+        // $this->session->set_flashdata('logout', validation_errors());
         session_destroy();
         redirect('home/index');
     }

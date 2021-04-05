@@ -61,30 +61,42 @@
 <script src="<?= base_url() ?>assets/js/script.js"></script>
 
 <script>
-    let flash = $('.flash_sukses').data('flash');
-
-    if (flash) {
-        Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Good..!',
-            text: flash,
+    // mendefinisikan variabel toast
+    $(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-right',
             showConfirmButton: false,
-            timer: 1500
-        })
-    }
+            timer: 3000
+        });
 
-    let flash_error = $('.flash_error').data('flash');
+        // alert untuk sukses
+        let flash = $('.flash_sukses').data('flash');
+        if (flash) {
+            toastr.success(flash)
+        }
 
-    if (flash_error) {
-        Swal.fire({
-            position: 'center',
-            icon: 'error',
-            title: 'Oops..',
-            text: flash_error,
-            showConfirmButton: true,
-        })
-    }
+        // alert untuk error
+        let flash_error = $('.toastrDefaultError').data('flash_toast');
+        if (flash_error) {
+            // jika ada error
+            Toast.fire({
+                icon: 'error',
+                title: flash_error
+            })
+
+            // jika validasi gagal
+            let flash_validasi = $('.swalDefaultError').data('flash_validasi');
+            if (flash_validasi) {
+                $(document).Toasts('create', {
+                    class: 'bg-danger',
+                    title: 'Oops..',
+                    position: 'topLeft',
+                    body: flash_validasi
+                })
+            }
+        }
+    })
 </script>
 </body>
 

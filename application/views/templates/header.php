@@ -24,9 +24,9 @@
     <!-- Tempusdominus Bootstrap 4 -->
     <link rel="stylesheet" href="<?= base_url('assets/adminLTE/') ?>plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
     <!-- iCheck -->
-    <!-- <link rel="stylesheet" href="<?= base_url('assets/adminLTE/') ?>plugins/icheck-bootstrap/icheck-bootstrap.min.css"> -->
+    <link rel="stylesheet" href="<?= base_url('assets/adminLTE/') ?>plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- JQVMap -->
-    <!-- <link rel="stylesheet" href="<?= base_url('assets/adminLTE/') ?>plugins/jqvmap/jqvmap.min.css"> -->
+    <link rel="stylesheet" href="<?= base_url('assets/adminLTE/') ?>plugins/jqvmap/jqvmap.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= base_url('assets/adminLTE/') ?>dist/css/adminlte.min.css">
     <!-- overlayScrollbars -->
@@ -34,7 +34,7 @@
     <!-- Daterange picker -->
     <link rel="stylesheet" href="<?= base_url('assets/adminLTE/') ?>plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
-    <!-- <link rel="stylesheet" href="<?= base_url('assets/adminLTE/') ?>plugins/summernote/summernote-bs4.min.css"> -->
+    <link rel="stylesheet" href="<?= base_url('assets/adminLTE/') ?>plugins/summernote/summernote-bs4.min.css">
     <!-- sweet alert2 -->
     <link rel="stylesheet" href="<?= base_url('assets/adminLTE/') ?>plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
     <!-- Toastr -->
