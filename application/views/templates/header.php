@@ -11,7 +11,6 @@
     <!-- fontawesome -->
     <!-- <link rel="stylesheet" href="<?= base_url() ?>assets/fontawesome/css/all.css"> -->
     <!-- sweet alert -->
-
     <!-- <script src="<?= base_url() ?>assets/swal/sweetalert2.min.css"></script> -->
 
     <!-- admin lte -->

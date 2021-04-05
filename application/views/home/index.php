@@ -26,12 +26,13 @@
                     <div class="text-light mt-3 mr-2">
                         <p><?= $this->session->userdata('nama') ?></p>
                     </div>
+                    <!-- <a class="nav-link btn btn-primary mr-3" id="logout" href="<?= base_url() ?>auth/logout">Logout</a> -->
                     <div class="custom-control custom-switch mr-2">
                         <input type="checkbox" class="custom-control-input" id="dark_mode">
                         <label class="custom-control-label text-light" for="dark_mode">Dark Mode</label>
                     </div>
                     <?php if ($this->session->userdata('nama')) { ?>
-                        <a class="nav-link btn btn-primary mr-3" href="<?= base_url() ?>auth/logout">Logout</a>
+                        <a class="nav-link btn btn-primary mr-3" id="logout" href="<?= base_url() ?>auth/logout">Logout</a>
                     <?php } else { ?>
                         <a class="nav-link btn btn-primary mr-3" href="<?= base_url() ?>auth/login">Login</a>
                     <?php } ?>

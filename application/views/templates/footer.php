@@ -5,8 +5,8 @@
 <!-- bootstrap js -->
 <!-- <script src="<?= base_url() ?>assets/bootstrap/js/bootstrap.min.js"></script> -->
 <!-- sweetAlert -->
-<!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script> -->
-<!-- <script src="<?= base_url() ?>assets/swal/sweetalert2.min.js"></script> -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="<?= base_url() ?>assets/swal/sweetalert2.min.js"></script>
 
 <!-- admin LTE -->
 
