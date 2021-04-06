@@ -45,7 +45,7 @@ class Auth extends CI_Controller
                 ];
 
                 $this->session->set_userdata($data);
-                $this->session->set_flashdata('sukses', 'selamat datang ' . $user['nama']);
+                $this->session->set_flashdata('sukses', 'Selamat datang ' . $user['nama']);
                 redirect('home/index');
             } else {
                 $this->session->set_flashdata('error', 'Password yang anda masukkan salah');

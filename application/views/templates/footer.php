@@ -49,14 +49,6 @@
 <!-- Toastr -->
 <script src="<?= base_url('assets/adminLTE/') ?>plugins/toastr/toastr.min.js"></script>
 
-
-
-
-
-
-
-
-
 <!-- my js -->
 <script src="<?= base_url() ?>assets/js/script.js"></script>
 

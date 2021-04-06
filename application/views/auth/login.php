@@ -6,6 +6,7 @@
             <div class="toastrDefaultError" data-flash_toast="<?= $this->session->flashdata('error') ?>"></div>
             <div class="swalDefaultError" data-flash_validasi="<?= $this->session->flashdata('validasi') ?>"></div>
             <div class="flash_sukses" data-flash="<?= $this->session->flashdata('sukses') ?>"></div>
+            <!-- <div class="loading" data-flash="<?= $this->session->flashdata('loading') ?>"></div> -->
 
             <!-- /.login-logo -->
             <div class="card card-outline card-light">

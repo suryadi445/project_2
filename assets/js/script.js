@@ -1,4 +1,5 @@
 $('document').ready(function() {
+    // show password login
     $('#checkbox').click(function(){
         if($(this).is(':checked')){
             $('#password_login').attr('type', 'text')
@@ -7,6 +8,7 @@ $('document').ready(function() {
         }
     })
 
+    // show password registrasi
     $('#checkbox_modal').click(function(){
         if($(this).is(':checked')){
             $('#password_modal').attr('type', 'text')
@@ -17,6 +19,7 @@ $('document').ready(function() {
         }
     })
 
+    // logout
     $('#logout').click(function(e){
         e.preventDefault();
 
