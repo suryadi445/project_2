@@ -33,6 +33,9 @@ class Auth extends CI_Controller
 
         $user = $this->db->get_where('tbl_users', ['email' => $email])->row_array();
 
+        // var_dump($user);
+        // die;
+
         if ($user) {
             if (password_verify($password, $user['password'])) {
                 $data = [
@@ -40,9 +43,14 @@ class Auth extends CI_Controller
                     'nama' => $user['nama']
                 ];
 
-                $this->session->set_userdata($data);
-                $this->session->set_flashdata('sukses', 'Selamat datang ' . $user['nama']);
-                redirect('home/index');
+                if ($user['aktivasi'] == 0) {
+                    $this->session->set_flashdata('error', 'Email anda belum diAktivasi');
+                    redirect('auth/login');
+                } else {
+                    $this->session->set_userdata($data);
+                    $this->session->set_flashdata('sukses', 'Selamat datang ' . $user['nama']);
+                    redirect('home/index');
+                }
             } else {
                 $this->session->set_flashdata('error', 'Password yang anda masukkan salah');
                 redirect('auth/login');
@@ -71,7 +79,18 @@ class Auth extends CI_Controller
         $data = [
             'nama' => $nama,
             'email' => $email,
-            'password' => $password
+            'password' => $password,
+            'aktivasi' => 0
+        ];
+
+        // siapkan token
+        // base64 merubah menjadi karakter
+        // random_bytes membangkitkan bilangan random tapi tidak berupa karakter yang bida dibaca
+        $token = base64_encode(random_bytes(32));
+        $user_token = [
+            'email'         => $email,
+            'token '        => $token,
+            'date_created'  => time()
         ];
 
         if ($this->form_validation->run() == false) {
@@ -81,10 +100,103 @@ class Auth extends CI_Controller
             redirect('auth/login');
         } else {
             // berhasil
+            // insert kedalam tabel users
             $this->auth_model->insert($data);
+            // insert kedalam tabel users_token
+            $this->auth_model->insert_token($user_token);
+
+            // function kirim email yang memiliki identitas verivikasi
+            $this->_sendEmail($token, 'verifikasi');
+
             $this->session->set_flashdata('sukses', 'data berhasil ditambahkan');
+
             redirect('auth/login');
         }
+    }
+
+    private function _sendEmail($token, $type)
+    {
+        // konfigurasi untuk library email CI
+        $config = [
+            'protocol'  => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_user' => 'suryadi.sender@gmail.com',
+            'smtp_pass' => 'mahasiwa',
+            'smtp_port' => 465,
+            'mailtype'  => 'html',
+            'charset'   => 'utf-8',
+            'newline'   => "\r\n"
+        ];
+        // load library email
+        $this->load->library('email', $config);
+        // email pengirimnya
+        $this->email->from('suryadi.sender@gmail.com', 'Suryadi');
+        // email penerima atau email yg digunakan untuk registrasi
+        $this->email->to($this->input->post('email'));
+
+        // validasi jika typenya verifikasi maka menjalankan fungsi berikut
+        if ($type == 'verifikasi') {
+            $this->email->subject('Account Verifikasi');
+            $this->email->message('Klik untuk verifikasi akun Anda : <a href="' . base_url() . 'auth/verifikasi?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '"> Aktifkan </a>');
+        }
+
+        // jika email terkirim
+        if ($this->email->send()) {
+            // mengembalikan jika nilainya benar
+            return true;
+        } else {
+            // menghentikan program dan menampilkan pesan kesalahan jika email tidak terkirim
+            echo $this->email->print_debugger();
+            die;
+        }
+    }
+
+    public function verifikasi()
+    {
+        $email = $this->input->get('email');
+        $token = $this->input->get('token');
+
+        $user = $this->db->get_where('tbl_users', ['email' => $email])->row_array();
+
+        if ($user) {
+            $user_token = $this->db->get_where('tbl_user_token', ['token' => $token])->row_array();
+
+            if ($user_token) {
+                // validasi untuk menentukan waktu untuk lamanya token bisa digunakan
+                if (time() - $user_token['date_created'] < (60 * 60 * 24)) {
+
+                    // query untuk merubah aktivasi pada tabel users menjadi 1 dari nilai awal 0
+                    $this->db->set('aktivasi', 1);
+                    $this->db->where('email', $email);
+                    $this->db->update('tbl_users');
+
+                    // menghapus token dari tabel user_token jika user sudah aktifasi
+                    $this->db->delete('tbl_user_token', ['email' => $email]);
+
+                    $this->session->set_flashdata('sukses', 'Aktifasi ' . $email . ' berhasil, Silahkan Login');
+                    redirect('auth/login');
+                } else {
+
+                    // menghapus token jika lebih dari 1 hari pada tabel users dan tabel user_token
+                    $this->db->delete('tbl_users', ['email' => $email]);
+                    $this->db->delete('tbl_user_token', ['email' => $email]);
+
+                    $this->session->set_flashdata('error', 'Aktifasi Gagal, Token sudah tidak berlaku');
+                    redirect('auth/login');
+                }
+            } else {
+                $this->session->set_flashdata('error', 'Aktifasi Gagal, Token yang Anda masukkan salah');
+                redirect('auth/login');
+            }
+        } else {
+            $this->session->set_flashdata('error', 'Aktifasi Gagal, Email yang Anda masukkan salah');
+            redirect('auth/login');
+        }
+    }
+
+    public function lupa_password()
+    {
+        // $row = $this->db->get_where('tbl_users', ['id' => $id]);
     }
 
 

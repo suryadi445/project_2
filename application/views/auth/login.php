@@ -164,10 +164,15 @@
                                 <input type="password" class="form-control" name="password2" id="password2">
                             </div>
                         </div>
-                        <div class="form-group float-right mb-n4">
-                            <div class="col float-right">
-                                <button class="btn btn-primary" type="submit">Kirim</button>
+                        <div class="row mb-4">
+                            <div class="col-sm-5"></div>
+                            <div class="col-sm-7 mt-n3">
+                                <input type="checkbox" class="form-checkbox mt-1 " id="checkbox_lupa_password">
+                                Show Password
                             </div>
+                        </div>
+                        <div class="row mb-n4">
+                            <button class="btn btn-primary col-lg-12" type="submit">Kirim</button>
                         </div>
                     </form>
                 </div>
