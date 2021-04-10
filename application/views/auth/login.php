@@ -40,7 +40,7 @@
                                 Show Password
                             </p>
                             <p class="text-right">
-                                <a href="forgot-password.html" class="text-success">Lupa Password?</a>
+                                <a href="forgot-password.html" class="text-success" data-toggle="modal" data-target="#modal_lupa_password">Lupa Password?</a>
                             </p>
                         </div>
                         <div class="row">
@@ -94,7 +94,7 @@
 
     <!-- modal registrasi -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="daftar_modal" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered" id="modal_daftar">
             <div class="modal-content bg-white text-dark">
                 <div class="mt-4">
                     <h4 class="text-center" id="daftar_modal"><b>Daftar Sekarang</b></h4>
@@ -103,16 +103,17 @@
                 <div class="container p-5">
                     <form action="<?= base_url() ?>auth/registrasi" method="post" class="mb-3">
                         <div class="form-group pt-2">
-                            <input type="text" name="nama" class="form-control bg-light" id="nama_modal" placeholder="Nama" value="<?= set_value('nama') ?>">
+                            <input type="text" name="nama" class="form-control bg-light" id="nama_modal" placeholder="Nama">
                         </div>
                         <div class="form-group pt-2">
-                            <input type="email" name="email" class="form-control bg-light" id="email_modal" placeholder="Email" value="<?= set_value('email') ?>">
+                            <input type="email" name="email" class="form-control bg-light" id="email_modal" placeholder="Email">
+                            <?= form_error('email', '<div class="text-danger mt-n3">', '</div>'); ?>
                         </div>
                         <div class="form-group pt-2">
-                            <input type="password" name="password" class="form-control bg-light" id="password_modal" placeholder="Password" value="<?= set_value('password') ?>">
+                            <input type="password" name="password" class="form-control bg-light" id="password_modal" placeholder="Password">
                         </div>
                         <div class="form-group pt-2">
-                            <input type="password" name="password2" class="form-control bg-light" id="password_modal2" placeholder="Confirm Password" value="<?= set_value('password2') ?>">
+                            <input type="password" name="password2" class="form-control bg-light" id="password_modal2" placeholder="Confirm Password">
                             <input type="checkbox" class="form-checkbox" id="checkbox_modal">
                             Show Password
                         </div>
@@ -125,6 +126,47 @@
                             <div class="col">
                                 Sudah memiliki akun?
                                 <a href="<?= base_url('auth/login'); ?>">Login</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- akhir modal -->
+
+
+    <!-- modal lupa password -->
+    <div class="modal fade" id="modal_lupa_password" tabindex="-1" aria-labelledby="modal_lupa_password" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" id="modal_lupa_password">
+            <div class="modal-content bg-white text-dark">
+                <div class="mt-4">
+                    <h4 class="text-center" id="daftar_modal"><b>Lupa Password</b></h4>
+                    <hr class="mb-n4">
+                </div>
+                <div class="container p-5">
+                    <form action="<?= base_url() ?>auth/lupa_password" method="post" class="mb-3">
+                        <div class="form-group row justify-content-between">
+                            <label for="password_lama" class="col-sm-5 col-form-label">Password Lama</label>
+                            <div class="col-sm-7 justify-content-end">
+                                <input type="password" class="form-control" name="password_lama" id="password_lama">
+                            </div>
+                        </div>
+                        <div class="form-group row justify-content-between">
+                            <label for="password1" class="col-sm-5 col-form-label">Password Baru</label>
+                            <div class="col-sm-7 justify-content-end">
+                                <input type="password" class="form-control" name="password1" id="password1">
+                            </div>
+                        </div>
+                        <div class="form-group row justify-content-between">
+                            <label for="password2" class="col-sm-5 col-form-label">Konfirmasi Password</label>
+                            <div class="col-sm-7 justify-content-end">
+                                <input type="password" class="form-control" name="password2" id="password2">
+                            </div>
+                        </div>
+                        <div class="form-group float-right mb-n4">
+                            <div class="col float-right">
+                                <button class="btn btn-primary" type="submit">Kirim</button>
                             </div>
                         </div>
                     </form>

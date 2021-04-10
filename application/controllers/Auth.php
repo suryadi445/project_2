@@ -1,7 +1,3 @@
-<!-- kunci rahasia aplikasi facebook = 8f75010dc9d002631f7ffc8ccb252efa -->
-<!-- ID Aplikasi = 190295119360398 -->
-
-
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 

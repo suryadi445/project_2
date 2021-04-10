@@ -18,7 +18,7 @@
                         <a class="nav-link" href="#new_movie">New Movie</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
+                        <a class="nav-link" href="#contact">Contact</a>
                     </li>
                 </ul>
                 <div class="flash_sukses" data-flash="<?= $this->session->flashdata('sukses') ?>"></div>
@@ -147,7 +147,7 @@
         </div>
     </div>
 
-    <div class="bg-light pt-3 container-fluid">
+    <div class="bg-light pt-3 container-fluid" id="contact">
         <div class="row">
             <div class="col mb-5 ml-3 mr-3">
                 <div class="row mt-4 justify-content-between">
@@ -185,7 +185,7 @@
         </div>
     </div>
     <!-- </div> -->
-    <footer class="bg-dark text-white">
+    <footer class="bg-dark text-white pt-1">
         <div class="container">
             <div class="row">
                 <div class="col text-center">
