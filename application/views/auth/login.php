@@ -6,7 +6,6 @@
             <div class="toastrDefaultError" data-flash_toast="<?= $this->session->flashdata('error') ?>"></div>
             <div class="swalDefaultError" data-flash_validasi="<?= $this->session->flashdata('validasi') ?>"></div>
             <div class="flash_sukses" data-flash="<?= $this->session->flashdata('sukses') ?>"></div>
-            <!-- <div class="loading" data-flash="<?= $this->session->flashdata('loading') ?>"></div> -->
 
             <!-- /.login-logo -->
             <div class="card card-outline card-light">
@@ -40,7 +39,7 @@
                                 Show Password
                             </p>
                             <p class="text-right">
-                                <a href="forgot-password.html" class="text-success" data-toggle="modal" data-target="#modal_lupa_password">Lupa Password?</a>
+                                <a href="#" class="text-success" data-toggle="modal" data-target="#modal_lupa_password">Lupa Password?</a>
                             </p>
                         </div>
                         <div class="row">
@@ -147,12 +146,12 @@
                 <div class="container p-5">
                     <form action="<?= base_url() ?>auth/lupa_password" method="post" class="mb-3">
                         <div class="form-group row justify-content-between">
-                            <label for="password_lama" class="col-sm-5 col-form-label">Password Lama</label>
-                            <div class="col-sm-7 justify-content-end">
-                                <input type="password" class="form-control" name="password_lama" id="password_lama">
+                            <label for="email" class="col-sm-2 col-form-label">Email</label>
+                            <div class="col-sm-10 justify-content-end">
+                                <input type="text" class="form-control" name="email" id="email">
                             </div>
                         </div>
-                        <div class="form-group row justify-content-between">
+                        <!-- <div class="form-group row justify-content-between">
                             <label for="password1" class="col-sm-5 col-form-label">Password Baru</label>
                             <div class="col-sm-7 justify-content-end">
                                 <input type="password" class="form-control" name="password1" id="password1">
@@ -163,14 +162,14 @@
                             <div class="col-sm-7 justify-content-end">
                                 <input type="password" class="form-control" name="password2" id="password2">
                             </div>
-                        </div>
-                        <div class="row mb-4">
+                        </div> -->
+                        <!-- <div class="row mb-4">
                             <div class="col-sm-5"></div>
                             <div class="col-sm-7 mt-n3">
                                 <input type="checkbox" class="form-checkbox mt-1 " id="checkbox_lupa_password">
                                 Show Password
                             </div>
-                        </div>
+                        </div> -->
                         <div class="row mb-n4">
                             <button class="btn btn-primary col-lg-12" type="submit">Kirim</button>
                         </div>

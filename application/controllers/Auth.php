@@ -33,9 +33,6 @@ class Auth extends CI_Controller
 
         $user = $this->db->get_where('tbl_users', ['email' => $email])->row_array();
 
-        // var_dump($user);
-        // die;
-
         if ($user) {
             if (password_verify($password, $user['password'])) {
                 $data = [
@@ -44,7 +41,7 @@ class Auth extends CI_Controller
                 ];
 
                 if ($user['aktivasi'] == 0) {
-                    $this->session->set_flashdata('error', 'Email anda belum diAktivasi');
+                    $this->session->set_flashdata('error', 'Email anda belum diAktivasi, mohon cek email anda untuk mengaktivasi');
                     redirect('auth/login');
                 } else {
                     $this->session->set_userdata($data);
@@ -85,7 +82,7 @@ class Auth extends CI_Controller
 
         // siapkan token
         // base64 merubah menjadi karakter
-        // random_bytes membangkitkan bilangan random tapi tidak berupa karakter yang bida dibaca
+        // random_bytes membangkitkan bilangan random tapi tidak berupa karakter yang bisa dibaca
         $token = base64_encode(random_bytes(32));
         $user_token = [
             'email'         => $email,
@@ -108,7 +105,7 @@ class Auth extends CI_Controller
             // function kirim email yang memiliki identitas verivikasi
             $this->_sendEmail($token, 'verifikasi');
 
-            $this->session->set_flashdata('sukses', 'data berhasil ditambahkan');
+            $this->session->set_flashdata('sukses', 'Data berhasil ditambahkan, cek email anda untuk mengaktivasi akun Anda');
 
             redirect('auth/login');
         }
@@ -118,14 +115,16 @@ class Auth extends CI_Controller
     {
         // konfigurasi untuk library email CI
         $config = [
-            'protocol'  => 'smtp',
-            'smtp_host' => 'ssl://smtp.googlemail.com',
-            'smtp_user' => 'suryadi.sender@gmail.com',
-            'smtp_pass' => 'mahasiwa',
-            'smtp_port' => 465,
-            'mailtype'  => 'html',
-            'charset'   => 'utf-8',
-            'newline'   => "\r\n"
+            'protocol'      => 'smtp',
+            'smtp_host'     => 'ssl://smtp.googlemail.com',
+            // ini percobaan cadangan untuk digunakan pengganti smtp_host
+            // 'smtp_crypto'   => 'tls',
+            'smtp_user'     => 'suryadi.sender@gmail.com',
+            'smtp_pass'     => 'mahasiwa',
+            'smtp_port'     => 465,
+            'mailtype'      => 'html',
+            'charset'       => 'utf-8',
+            'newline'       => "\r\n"
         ];
         // load library email
         $this->load->library('email', $config);
@@ -136,8 +135,17 @@ class Auth extends CI_Controller
 
         // validasi jika typenya verifikasi maka menjalankan fungsi berikut
         if ($type == 'verifikasi') {
+            // subject untuk judul emailnya
             $this->email->subject('Account Verifikasi');
+            // untuk isi/body emailnya
+            // urlencode digunakan untuk meng-encode menjadi url
             $this->email->message('Klik untuk verifikasi akun Anda : <a href="' . base_url() . 'auth/verifikasi?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '"> Aktifkan </a>');
+        } elseif ($type == 'forgot') {
+            // subject untuk judul emailnya
+            $this->email->subject('Reset Password');
+            // untuk isi/body emailnya
+            // urlencode digunakan untuk meng-encode menjadi url
+            $this->email->message('reset password : <a href="' . base_url() . 'auth/reset_password?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '"> Reset </a>');
         }
 
         // jika email terkirim
@@ -196,13 +204,90 @@ class Auth extends CI_Controller
 
     public function lupa_password()
     {
-        // $row = $this->db->get_where('tbl_users', ['id' => $id]);
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('error', 'Ada kesalahan pada pengisian data anda, Silahkan ulangi kembali');
+            redirect('auth/login');
+        } else {
+            $email = $this->input->post('email');
+            $user = $this->db->get_where('tbl_users', ['email' => $email, 'aktivasi' => 1])->row_array();
+            if ($user) {
+                $token = base64_encode(random_bytes(32));
+                $user_token = [
+                    'email' => $email,
+                    'token' => $token,
+                    'date_created' => time()
+                ];
+
+                $this->db->insert('tbl_user_token', $user_token);
+                $this->_sendEmail($token, 'forgot');
+
+                $this->session->set_flashdata('sukses', 'Cek email anda untuk mengganti password Anda');
+                redirect('auth/login');
+            } else {
+                $this->session->set_flashdata('error', 'Email Anda salah atau email anda belum di aktivasi, mohon masukkan email yang benar untuk mengganti password Anda');
+                redirect('auth/login');
+            }
+        }
     }
 
+    public function reset_password()
+    {
+        $email = $this->input->get('email');
+        $token = $this->input->get('token');
+
+        $user = $this->auth_model->getUser($email);
+
+        if ($user) {
+            // ada
+            $user_token = $this->auth_model->getUserToken($token);
+
+            if ($user_token) {
+                $this->session->set_userdata('reset_email', $email);
+                $this->ganti_password();
+            } else {
+                $this->session->set_flashdata('error', 'Permintaan ganti Password gagal, token salah');
+                redirect('auth/login');
+            }
+        } else {
+            // gak ada
+            $this->session->set_flashdata('error', 'Permintaan ganti Password gagal, email salah');
+            redirect('auth/login');
+        }
+    }
+
+    public function ganti_password()
+    {
+
+        if (!$this->session->userdata('reset_email')) {
+            redirect('auth/login');
+        }
+
+        $this->form_validation->set_rules('ganti_password1', 'Password', 'required|trim|min_length[6]|matches[ganti_password2]');
+        $this->form_validation->set_rules('ganti_password2', 'Konfirmasi Password', 'required|trim|min_length[6]|matches[ganti_password1]');
+
+        if ($this->form_validation->run() == false) {
+            $data['judul'] = 'Ganti Password';
+            $this->load->view('templates/header', $data);
+            $this->load->view('auth/ganti_password');
+            $this->load->view('templates/footer');
+        } else {
+            // berhasil
+            $password = password_hash($this->input->post('ganti_password1'), PASSWORD_DEFAULT);
+            $email = $this->session->userdata('reset_email');
+
+            $this->auth_model->update_password($password, $email);
+
+            $this->session->unset_userdata('reset_email');
+
+            $this->session->set_flashdata('sukses', 'Password berhasil diubah..! Silahkan login');
+            redirect('auth/login');
+        }
+    }
 
     public function logout()
     {
-        // $this->session->set_flashdata('logout', validation_errors());
+        $this->session->set_flashdata('sukses', 'Anda berhasil Logout');
         session_destroy();
         redirect('home/index');
     }
