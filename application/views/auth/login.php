@@ -151,25 +151,6 @@
                                 <input type="text" class="form-control" name="email" id="email">
                             </div>
                         </div>
-                        <!-- <div class="form-group row justify-content-between">
-                            <label for="password1" class="col-sm-5 col-form-label">Password Baru</label>
-                            <div class="col-sm-7 justify-content-end">
-                                <input type="password" class="form-control" name="password1" id="password1">
-                            </div>
-                        </div>
-                        <div class="form-group row justify-content-between">
-                            <label for="password2" class="col-sm-5 col-form-label">Konfirmasi Password</label>
-                            <div class="col-sm-7 justify-content-end">
-                                <input type="password" class="form-control" name="password2" id="password2">
-                            </div>
-                        </div> -->
-                        <!-- <div class="row mb-4">
-                            <div class="col-sm-5"></div>
-                            <div class="col-sm-7 mt-n3">
-                                <input type="checkbox" class="form-checkbox mt-1 " id="checkbox_lupa_password">
-                                Show Password
-                            </div>
-                        </div> -->
                         <div class="row mb-n4">
                             <button class="btn btn-primary col-lg-12" type="submit">Kirim</button>
                         </div>

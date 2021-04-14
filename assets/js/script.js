@@ -18,6 +18,16 @@ $('document').ready(function() {
             $('#password_modal2').attr('type', 'password')
         }
     })
+    // show password ganti password
+    $('#checkbox_gantiPassword').click(function(){
+        if($(this).is(':checked')){
+            $('#ganti_password1').attr('type', 'text')
+            $('#ganti_password2').attr('type', 'text')
+        }else{
+            $('#ganti_password1').attr('type', 'password')
+            $('#ganti_password2').attr('type', 'password')
+        }
+    })
 
     // logout
     $('#logout').click(function(e){
