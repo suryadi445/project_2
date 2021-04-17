@@ -22,8 +22,8 @@
                     </li>
                 </ul>
                 <!-- alert -->
-                <div class="alert_sukses" data-alert-sukses="<?= $this->session->flashdata('alert_sukses') ?>"></div>
                 <div class="flash_sukses" data-flash="<?= $this->session->flashdata('sukses') ?>"></div>
+                <div class="alert_sukses" data-alert-sukses="<?= $this->session->flashdata('alert_sukses') ?>"></div>
 
                 <form class="form-inline my-2 my-lg-0">
                     <div class="text-light mt-3 mr-2">

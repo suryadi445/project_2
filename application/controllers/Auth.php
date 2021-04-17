@@ -300,8 +300,6 @@ class Auth extends CI_Controller
 
     public function logout()
     {
-        $this->session->set_flashdata('alert_sukses', 'Yeayy, Berhasil..!!');
-        $this->session->set_flashdata('sukses', 'Anda berhasil Logout');
         session_destroy();
         redirect('home/index');
     }

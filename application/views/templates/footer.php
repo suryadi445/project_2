@@ -62,13 +62,6 @@
             timer: 3000
         });
 
-        var Toastr = Swal.mixin({
-            toastr: true,
-            position: 'top-left',
-            // showConfirmButton: false,
-            // timer: 3000
-        });
-
         // alert untuk sukses
         let alert = $('.alert_sukses').data('alert-sukses');
         let flash = $('.flash_sukses').data('flash');

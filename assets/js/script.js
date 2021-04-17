@@ -44,6 +44,12 @@ $('document').ready(function() {
             cancelButtonText: 'Cancel'
             }).then((result) => {
                 if (result.isConfirmed) {
+                    Swal.fire({
+                    title:'Logout berhasil!!',
+                    icon:'success',
+                    showConfirmButton: false,
+                    timer: 2000
+                    })
                     window.location = link;
                 } 
             })
