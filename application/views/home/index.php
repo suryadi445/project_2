@@ -155,25 +155,29 @@
             <div class="col mb-5 ml-3 mr-3">
                 <div class="row mt-4 justify-content-between">
                     <div class="col-5 card bg-light">
-                        <form>
+                        <form action="<?= base_url('home/kirim_pesan'); ?>" method="post">
                             <div class="form-group">
                                 <label for="nama">Nama</label>
-                                <input type="text" class="form-control" id="nama">
+                                <input type="text" class="form-control" id="nama" name="nama">
                             </div>
+                            <?= form_error('nama', '<div class="text-danger mt-n3">', '</div>'); ?>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="text" class="form-control" id="email">
+                                <input type="text" class="form-control" id="email" name="email">
                             </div>
+                            <?= form_error('email', '<div class="text-danger mt-n3">', '</div>'); ?>
                             <div class="form-group">
                                 <label for="phone">Nomor Handphone</label>
-                                <input type="text" class="form-control" id="phone">
+                                <input type="text" class="form-control" id="phone" name="phone">
                             </div>
+                            <?= form_error('phone', '<div class="text-danger mt-n3">', '</div>'); ?>
                             <div class="form-group">
                                 <label for="message">Pesan</label>
-                                <textarea class="form-control" id="message" rows="3"></textarea>
+                                <textarea class="form-control" id="message" rows="3" name="pesan"></textarea>
                             </div>
+                            <?= form_error('pesan', '<div class="text-danger mt-n3">', '</div>'); ?>
                             <div class="form-group">
-                                <button type="button" class="btn btn-primary">Kirim</button>
+                                <button type="submit" class="btn btn-primary" id="kirim_pesan">Kirim</button>
                             </div>
                         </form>
                     </div>
