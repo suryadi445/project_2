@@ -7,7 +7,12 @@
         <div class=" card">
             <div class="card-body login-card-body text-black">
                 <p class="login-box-msg ">Masukan kata sandi baru Anda</p>
-                <div class="toastrDefaultError" data-flash_toast="<?= $this->session->flashdata('error') ?>"></div>
+                <!-- alert -->
+                <div class="toastrDefaultError" data-flash_gagal="<?= $this->session->flashdata('gagal') ?>"></div>
+                <div class="toastsDefaultDanger" data-flash_toast="<?= $this->session->flashdata('error') ?>"></div>
+                <div class="swalDefaultError" data-flash_validasi="<?= $this->session->flashdata('validasi') ?>"></div>
+                <div class="alert_sukses" data-alert-sukses="<?= $this->session->flashdata('alert_sukses') ?>"></div>
+                <div class="flash_sukses" data-flash="<?= $this->session->flashdata('sukses') ?>"></div>
 
                 <form action="<?= base_url('auth/ganti_password'); ?>" method="post">
                     <div class="input-group mb-3">

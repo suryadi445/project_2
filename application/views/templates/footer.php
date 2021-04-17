@@ -62,31 +62,56 @@
             timer: 3000
         });
 
+        var Toastr = Swal.mixin({
+            toastr: true,
+            position: 'top-left',
+            // showConfirmButton: false,
+            // timer: 3000
+        });
+
         // alert untuk sukses
+        let alert = $('.alert_sukses').data('alert-sukses');
         let flash = $('.flash_sukses').data('flash');
+
         if (flash) {
-            toastr.success(flash)
+            Toast.fire({
+                icon: 'success',
+                title: alert
+            }).then((result) => {
+                toastr.success(flash)
+            })
         }
 
+
         // alert untuk error
-        let flash_error = $('.toastrDefaultError').data('flash_toast');
-        if (flash_error) {
+        let flash_error = $('.toastsDefaultDanger').data('flash_toast');
+        let flash_gagal = $('.toastrDefaultError').data('flash_gagal');
+        let flash_validasi = $('.swalDefaultError').data('flash_validasi');
+
+        if (flash_gagal) {
             // jika ada error
             Toast.fire({
                 icon: 'error',
-                title: flash_error
+                title: flash_gagal
+            }).then((result) => {
+                if (flash_validasi) {
+                    $(document).Toasts('create', {
+                        class: 'bg-danger',
+                        // title: 'Oops..',
+                        position: 'topLeft',
+                        body: flash_validasi
+                    })
+                }
+            }).then((result) => {
+                if (flash_error) {
+                    $(document).Toasts('create', {
+                        class: 'bg-danger',
+                        title: 'Oops..',
+                        position: 'topLeft',
+                        body: flash_error
+                    })
+                }
             })
-
-            // jika validasi gagal
-            let flash_validasi = $('.swalDefaultError').data('flash_validasi');
-            if (flash_validasi) {
-                $(document).Toasts('create', {
-                    class: 'bg-danger',
-                    title: 'Oops..',
-                    position: 'topLeft',
-                    body: flash_validasi
-                })
-            }
         }
     })
 </script>

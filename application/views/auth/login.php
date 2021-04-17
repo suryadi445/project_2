@@ -3,8 +3,10 @@
     <div class="container ">
         <div class="login-box m-auto" style="width: 430px;">
             <!-- alert -->
-            <div class="toastrDefaultError" data-flash_toast="<?= $this->session->flashdata('error') ?>"></div>
+            <div class="toastrDefaultError" data-flash_gagal="<?= $this->session->flashdata('gagal') ?>"></div>
+            <div class="toastsDefaultDanger" data-flash_toast="<?= $this->session->flashdata('error') ?>"></div>
             <div class="swalDefaultError" data-flash_validasi="<?= $this->session->flashdata('validasi') ?>"></div>
+            <div class="alert_sukses" data-alert-sukses="<?= $this->session->flashdata('alert_sukses') ?>"></div>
             <div class="flash_sukses" data-flash="<?= $this->session->flashdata('sukses') ?>"></div>
 
             <!-- /.login-logo -->
