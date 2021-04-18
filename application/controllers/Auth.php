@@ -250,7 +250,7 @@ class Auth extends CI_Controller
         $user = $this->auth_model->getUser($email);
 
         if ($user) {
-            // ada
+            // jika user ada didatabase
             $user_token = $this->auth_model->getUserToken($token);
 
             if ($user_token) {
@@ -262,7 +262,7 @@ class Auth extends CI_Controller
                 redirect('auth/login');
             }
         } else {
-            // gak ada
+            // user gak ada di DB
             $this->session->set_flashdata('gagal', 'Permintaan ganti Password gagal');
             $this->session->set_flashdata('error', 'Email yang anda masukkan salah, mohon masukkan email yang benar');
             redirect('auth/login');

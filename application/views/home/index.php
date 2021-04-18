@@ -158,12 +158,12 @@
                         <form action="<?= base_url('home/kirim_pesan'); ?>" method="post">
                             <div class="form-group">
                                 <label for="nama">Nama</label>
-                                <input type="text" class="form-control" id="nama" name="nama">
+                                <input type="text" class="form-control" id="nama" name="nama" value="<?= $this->session->userdata('nama'); ?>" readonly>
                             </div>
                             <?= form_error('nama', '<div class="text-danger mt-n3">', '</div>'); ?>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="text" class="form-control" id="email" name="email">
+                                <input type="text" class="form-control" id="email" name="email" value="<?= $this->session->userdata('email'); ?>" readonly>
                             </div>
                             <?= form_error('email', '<div class="text-danger mt-n3">', '</div>'); ?>
                             <div class="form-group">
@@ -184,7 +184,35 @@
                     <div class="col-6 card bg-light">
                         <div class="form-group">
                             <label for="message">Komentar</label>
-                            <textarea class="form-control" id="message" rows="10"></textarea>
+                            <!-- <textarea class="form-control" id="message" rows="10"></textarea> -->
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card">
+                                        <?php foreach ($pesan as $message) : ?>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="form-group row pl-3 pr-3 pt-3">
+                                                        <label for="nama_pesan" class="col-sm-2 col-form-label">Nama</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" class="form-control" id="nama_pesan" value="<?= $message['nama']; ?>" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="form-group row pl-3 pr-3">
+                                                        <label for="textAreaPesan" class="col-sm-2 col-form-label">Pesan</label>
+                                                        <div class="col-sm-10">
+                                                            <textarea class="form-control" id="textAreaPesan" rows="3" readonly><?= $message['pesan']; ?></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php endforeach ?>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
